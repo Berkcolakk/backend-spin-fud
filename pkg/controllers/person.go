@@ -1,4 +1,4 @@
-package main
+package person
 
 import (
 	"encoding/json"
@@ -53,15 +53,4 @@ func DeletePersonEndpoint(w http.ResponseWriter, req *http.Request) {
 		}
 	}
 	json.NewEncoder(w).Encode(people)
-}
-
-func main() {
-	router := mux.NewRouter()
-	people = append(people, Person{ID: "1", Firstname: "John", Lastname: "Doe", Address: &Address{City: "City X", State: "State X"}})
-	people = append(people, Person{ID: "2", Firstname: "Koko", Lastname: "Doe", Address: &Address{City: "City Z", State: "State Y"}})
-	router.HandleFunc("/people", GetPeopleEndpoint).Methods("GET")
-	router.HandleFunc("/people/{id}", GetPersonEndpoint).Methods("GET")
-	router.HandleFunc("/people/{id}", CreatePersonEndpoint).Methods("POST")
-	router.HandleFunc("/people/{id}", DeletePersonEndpoint).Methods("DELETE")
-	http.ListenAndServe(":8000", router)
 }
