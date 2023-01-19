@@ -1,9 +1,12 @@
 package main
 
 import (
-	routes "rest-api-test/pkg/routers"
+	dbConnection "rest-api-test/pkg/db"
+	// routes "rest-api-test/pkg/routers"
 )
 
 func main() {
-	routes.GenerateRouter()
+	// routes.GenerateRouter()
+	dbConnection.DBConnect()
+
 }
