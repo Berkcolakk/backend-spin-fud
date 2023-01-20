@@ -6,9 +6,9 @@ import (
 )
 
 func Authentication(w http.ResponseWriter, req *http.Request) {
-	fmt.Println("Test")
+	fmt.Println("Authenication")
 }
 
 func Register(w http.ResponseWriter, req *http.Request) {
-
+	fmt.Println("Register")
 }

@@ -4,42 +4,42 @@ import (
 	"database/sql"
 	"fmt"
 
-	iniParser "spin-fud/pkg/utils"
+	jsonFileReader "spin-fud/pkg/utils"
 
 	_ "github.com/lib/pq"
 )
 
+// const (
+// 	host     = "localhost"
+// 	port     = 5432
+// 	user     = "postgres"
+// 	password = "5128950"
+// 	dbname   = "SpinFud"
+// )
+
 func DBConnect() {
-	// veritabanına bağlanmak için gerekli olan ayarlar,
-	value, err := iniParser.GetValueFromINI("Database", "ConnectionString")
-	fmt.Println(err)
-	fmt.Println(value)
-	if err != nil {
-		return
-	}
-	connStr := value
-	db, err := sql.Open("postgres", connStr)
+	db, err := sql.Open("postgres", jsonFileReader.GetJSONFile("pkg/config/config.json", "ConnectionString"))
 	if err != nil {
 		fmt.Println(err)
 		return
 	}
+
 	defer db.Close()
 
 	// Veritabanına sorgu yollar
-	rows, err := db.Query("SELECT * FROM User")
+	rows, err := db.Query("SELECT * FROM users")
 	if err != nil {
 		fmt.Println(err)
 		return
 	}
 	defer rows.Close()
-	fmt.Println(rows)
-	// Sonuçları yazdır
 	for rows.Next() {
-		var name string
-		if err := rows.Scan(&name); err != nil {
+		var UserName string
+		fmt.Println(rows.Columns())
+		if err := rows.Scan(&UserName); err != nil {
 			fmt.Println(err)
 			return
 		}
-		fmt.Println(name)
+		fmt.Println(UserName)
 	}
 }
