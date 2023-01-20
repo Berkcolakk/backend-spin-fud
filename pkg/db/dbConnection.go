@@ -4,7 +4,7 @@ import (
 	"database/sql"
 	"fmt"
 
-	iniParser "rest-api-test/pkg/utils"
+	iniParser "spin-fud/pkg/utils"
 
 	_ "github.com/lib/pq"
 )

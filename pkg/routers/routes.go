@@ -2,7 +2,7 @@ package routes
 
 import (
 	"net/http"
-	person "rest-api-test/pkg/controllers"
+	person "spin-fud/pkg/controllers"
 
 	"github.com/gorilla/mux"
 )

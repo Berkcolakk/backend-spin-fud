@@ -1,4 +1,4 @@
-module rest-api-test
+module spin-fud
 
 go 1.19
 

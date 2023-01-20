@@ -1,7 +1,7 @@
 package main
 
 import (
-	dbConnection "rest-api-test/pkg/db"
+	dbConnection "spin-fud/pkg/db"
 	// routes "rest-api-test/pkg/routers"
 )
 
