@@ -2,17 +2,25 @@ package routes
 
 import (
 	"net/http"
-	person "spin-fud/pkg/controllers"
+	authentication "spin-fud/pkg/controllers"
 
 	"github.com/gorilla/mux"
 )
 
 func GenerateRouter() {
 	router := mux.NewRouter()
+	authenticationRouters(router)
+	listen(router, ":8000")
+}
 
-	router.HandleFunc("/people", person.GetPeopleEndpoint).Methods("GET")
-	router.HandleFunc("/people/{id}", person.GetPersonEndpoint).Methods("GET")
-	router.HandleFunc("/people/{id}", person.CreatePersonEndpoint).Methods("POST")
-	router.HandleFunc("/people/{id}", person.DeletePersonEndpoint).Methods("DELETE")
-	http.ListenAndServe(":8000", router)
+/*
+pkg/controllers/authentication router.
+*/
+func authenticationRouters(router *mux.Router) {
+	router.HandleFunc("/login", authentication.Authentication).Methods("POST")
+	router.HandleFunc("/register", authentication.Register).Methods("POST")
+}
+
+func listen(router *mux.Router, port string) {
+	http.ListenAndServe(port, router)
 }

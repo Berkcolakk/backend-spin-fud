@@ -2,11 +2,11 @@ package main
 
 import (
 	dbConnection "spin-fud/pkg/db"
-	// routes "rest-api-test/pkg/routers"
+	routes "spin-fud/pkg/routers"
 )
 
 func main() {
-	// routes.GenerateRouter()
+	routes.GenerateRouter()
 	dbConnection.DBConnect()
 
 }
